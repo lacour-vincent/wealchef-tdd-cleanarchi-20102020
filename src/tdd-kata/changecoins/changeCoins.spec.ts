@@ -1,3 +1,5 @@
+import {changeCoins, Wallet} from "./changeCoins";
+
 /* There are four types of common coins in US currency:
         dimes (10 cents)
         nickels (5 cents)
@@ -13,8 +15,6 @@
     How many ways are there to make change for a dollar using these common coins? (1 dollar = 100 cents).
 
  */
-
-import {changeCoins, Wallet} from "./changeCoins";
 
 describe('Change coins possibilities determination', () => {
 

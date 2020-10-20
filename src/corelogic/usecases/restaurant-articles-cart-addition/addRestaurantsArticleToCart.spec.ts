@@ -1,6 +1,6 @@
-import {AppState} from "../../../store/appState.interface";
+import {AppState} from "../../../redux/appState.interface";
 import {Store} from "redux";
-import {createStore} from "../../../store/createStore";
+import {createStore} from "../../../redux/createStore";
 
 describe('Add to cart some restaurants\' articles', () => {
 

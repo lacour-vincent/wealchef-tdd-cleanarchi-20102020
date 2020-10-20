@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {AppState} from "../../../store/appState.interface";
+import {AppState} from "../../../redux/appState.interface";
 import React from "react";
 
 export const Cart = () => {

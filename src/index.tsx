@@ -3,18 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from "./store/createStore";
+import {createStore} from "./redux/createStore";
 import {Provider} from "react-redux";
+import {InMemoryRestaurantGateway} from "./adapters/secondary/gateways/inMemoryRestaurantGateway";
 
-const store = createStore();
+const store = createStore({
+        restaurantGateway: new InMemoryRestaurantGateway()
+    }
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-          <App />
-      </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

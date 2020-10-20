@@ -1,11 +1,11 @@
-import {AppState} from "../../../store/appState.interface";
-import {RestaurantGateway} from "../../gateways/restaurantsArticlesGateway.interface";
+import * as actionCreators from "./actionCreators";
+import {ThunkResult} from "../../../redux/utils";
 
-export const retrieveRestaurant = () =>
-    async (dispatch: any,
-           state: AppState,
-           {restaurantGateway}: { restaurantGateway: RestaurantGateway }) => {
-        dispatch({type: 'RETRIEVE_RESTAURANT'});
-        const restaurant = await restaurantGateway.retrieve();
-        dispatch({type: 'RESTAURANT_RETRIEVED', payload: restaurant});
-    }
+
+export const retrieveRestaurant: ThunkResult<Promise<void>> = async (dispatch,
+                                                                     state,
+                                                                     {restaurantGateway}) => {
+    dispatch(actionCreators.Actions.retrieveRestaurant());
+    const restaurant = await restaurantGateway.retrieve();
+    dispatch(actionCreators.Actions.restaurantRetrieved(restaurant));
+}

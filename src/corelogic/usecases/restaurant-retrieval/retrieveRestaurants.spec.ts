@@ -1,12 +1,12 @@
-import {AppState} from "../../../store/appState.interface";
-import {Store} from "redux";
-import {createStore} from "../../../store/createStore";
+import {AppState} from "../../../redux/appState.interface";
+import {createStore} from "../../../redux/createStore";
 import {InMemoryRestaurantGateway} from "../../../adapters/secondary/gateways/inMemoryRestaurantGateway";
 import {retrieveRestaurant} from "./retrieveRestaurant";
+import {ReduxStore} from "../../../redux/utils";
 
 describe('Retrieve restaurants', () => {
 
-    let store: Store<AppState>;
+    let store: ReduxStore;
     let restaurantGateway: InMemoryRestaurantGateway;
     let initialState: AppState;
 
@@ -31,7 +31,7 @@ describe('Retrieve restaurants', () => {
 
         it('should retrieve the nearest restaurant', () => {
             restaurantGateway.feedWith({id: '4556def', articles: [{id: '123abc'}]});
-            store.dispatch<any>(retrieveRestaurant());
+            store.dispatch(retrieveRestaurant);
             store.subscribe(() => {
                 expect(store.getState()).toEqual({
                     ...initialState,
