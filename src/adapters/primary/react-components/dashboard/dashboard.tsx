@@ -18,13 +18,11 @@ export const Dashboard = () => {
     if (fetching)
         return <p>Chargement du restaurant ...</p>
 
-    if (!fetched) {
+    if (!fetched)
         return null;
-    }
 
-    if (!restaurant) {
+    if (!restaurant)
         return <p>Il n'y a pas de restaurant à proximité</p>;
-    }
 
     return <Container>
         <Restaurant restaurant={restaurant}/>
