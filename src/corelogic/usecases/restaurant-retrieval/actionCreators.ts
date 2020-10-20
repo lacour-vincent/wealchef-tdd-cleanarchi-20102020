@@ -1,4 +1,4 @@
-import {ActionsUnion, createAction} from "../../../redux/utils";
+import {ActionsUnion, createAction} from "../../../redux/customAction";
 
 export const RETRIEVE_RESTAURANT = 'RETRIEVE_RESTAURANT';
 export const RESTAURANT_RETRIEVED = 'RESTAURANT_RETRIEVED';

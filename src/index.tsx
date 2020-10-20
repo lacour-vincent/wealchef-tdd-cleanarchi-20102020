@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from "./redux/createStore";
 import {Provider} from "react-redux";
 import {InMemoryRestaurantGateway} from "./adapters/secondary/gateways/inMemoryRestaurantGateway";
+import {configureStore} from "./redux/configureStore";
 
-const store = createStore({
+const store = configureStore({
         restaurantGateway: new InMemoryRestaurantGateway()
     }
 );

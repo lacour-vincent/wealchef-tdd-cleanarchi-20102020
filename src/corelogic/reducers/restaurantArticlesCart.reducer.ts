@@ -1,4 +1,4 @@
-import {ActionWithPayload} from "../../redux/utils";
+import {ActionWithPayload} from "../../redux/customAction";
 
 export const cart = (state: string[] = [], action: ActionWithPayload<string, any>) => {
     if (action.type === 'ADD_ARTICLE_TO_CART') {

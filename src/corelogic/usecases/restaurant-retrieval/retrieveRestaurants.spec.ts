@@ -1,10 +1,9 @@
 import {AppState} from "../../../redux/appState.interface";
-import {createStore} from "../../../redux/createStore";
 import {InMemoryRestaurantGateway} from "../../../adapters/secondary/gateways/inMemoryRestaurantGateway";
 import {retrieveRestaurant} from "./retrieveRestaurant";
-import {ReduxStore} from "../../../redux/utils";
+import {configureStore, ReduxStore} from "../../../redux/configureStore";
 
-describe('Retrieve restaurants', () => {
+describe('Restaurant retrieval', () => {
 
     let store: ReduxStore;
     let restaurantGateway: InMemoryRestaurantGateway;
@@ -12,7 +11,7 @@ describe('Retrieve restaurants', () => {
 
     beforeEach(() => {
         restaurantGateway = new InMemoryRestaurantGateway();
-        store = createStore({restaurantGateway});
+        store = configureStore({restaurantGateway});
         initialState = store.getState();
     });
 

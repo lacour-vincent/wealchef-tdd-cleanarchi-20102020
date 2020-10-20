@@ -1,5 +1,5 @@
 import * as actionCreators from "./actionCreators";
-import {ThunkResult} from "../../../redux/utils";
+import {ThunkResult} from "../../../redux/configureStore";
 
 
 export const retrieveRestaurant: ThunkResult<Promise<void>> = async (dispatch,

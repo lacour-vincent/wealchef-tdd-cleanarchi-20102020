@@ -1,6 +1,6 @@
 import {AppState} from "../../../redux/appState.interface";
 import {Store} from "redux";
-import {createStore} from "../../../redux/createStore";
+import {configureStore} from "../../../redux/configureStore";
 
 describe('Add to cart some restaurants\' articles', () => {
 
@@ -8,7 +8,7 @@ describe('Add to cart some restaurants\' articles', () => {
     let initialState: AppState;
 
     beforeEach(() => {
-        store = createStore({});
+        store = configureStore(null);
         initialState = store.getState();
     });
 
