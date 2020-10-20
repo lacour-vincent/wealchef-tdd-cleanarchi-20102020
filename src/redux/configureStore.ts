@@ -4,16 +4,16 @@ import {restaurant} from "../corelogic/reducers/restaurant.reducer";
 import thunk, {ThunkAction, ThunkDispatch, ThunkMiddleware} from "redux-thunk";
 import {Dependencies} from "./dependencies";
 import {AppState} from "./appState.interface";
+import {composeWithDevTools} from "redux-devtools-extension/index";
 
-export const configureStore = (dependencies: Dependencies | null) => {
-    return createReduxStore(
+export const configureStore = (dependencies: Dependencies | null) =>
+    createReduxStore(
         combineReducers({
             cart,
             restaurant
-        }), applyMiddleware(dependencies ?
+        }), composeWithDevTools(applyMiddleware(dependencies ?
             thunk.withExtraArgument(dependencies) as ThunkMiddleware<AppState, Action, Dependencies> :
-            thunk));
-};
+            thunk)));
 
 export type ReduxStore = Store<AppState> & { dispatch: ThunkDispatch<AppState, Dependencies, Action> }
 

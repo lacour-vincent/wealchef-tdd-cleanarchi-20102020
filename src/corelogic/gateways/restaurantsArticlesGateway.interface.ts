@@ -1,3 +1,5 @@
+import {Restaurant} from "../models/restaurant.interface";
+
 export interface RestaurantGateway {
-    retrieve(): Promise<{ id: string; articles: { id: string }[] } | null>
+    retrieve(): Promise<Restaurant | null>
 }

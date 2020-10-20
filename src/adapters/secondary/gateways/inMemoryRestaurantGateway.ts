@@ -1,14 +1,15 @@
 import {RestaurantGateway} from "../../../corelogic/gateways/restaurantsArticlesGateway.interface";
+import {Restaurant} from "../../../corelogic/models/restaurant.interface";
 
 export class InMemoryRestaurantGateway implements RestaurantGateway {
 
-    private _restaurant: { id: string; articles: { id: string }[] } | null = null;
+    private _restaurant: Restaurant | null = null;
 
-    retrieve(): Promise<{ id: string; articles: { id: string }[] } | null> {
-        return Promise.resolve(this._restaurant);
+    async retrieve(): Promise<Restaurant | null> {
+        return this._restaurant;
     }
 
-    feedWith(restaurant: { id: string; articles: { id: string }[] }) {
+    feedWith(restaurant: Restaurant) {
         this._restaurant = restaurant;
     }
 }
