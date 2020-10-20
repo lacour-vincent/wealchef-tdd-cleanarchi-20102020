@@ -7,9 +7,14 @@ import {Provider} from "react-redux";
 import {InMemoryRestaurantGateway} from "./adapters/secondary/gateways/inMemoryRestaurantGateway";
 import {configureStore} from "./redux/configureStore";
 import wealSushiImg from "./adapters/primary/assets/img/wealsushi.jpeg"
+import {HttpRestaurantGateway} from "./adapters/secondary/gateways/httpRestaurantGateway";
 
-const restaurantGateway = new InMemoryRestaurantGateway();
-restaurantGateway.feedWith(wealSushiRestaurant())
+let restaurantGateway;
+if (process.env.REACT_APP_INMEMORY === 'true') {
+    restaurantGateway = new InMemoryRestaurantGateway();
+    restaurantGateway.feedWith(wealSushiRestaurant());
+} else
+    restaurantGateway = new HttpRestaurantGateway();
 
 const store = configureStore({
         restaurantGateway
@@ -30,8 +35,7 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-
-function wealSushiRestaurant() {
+export function wealSushiRestaurant() {
     return {
         id: '4556def',
         name: 'WealSushi',

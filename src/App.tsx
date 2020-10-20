@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
 import {Cart} from "./adapters/primary/react-components/dashboard/cart.component";
-import {Restaurant} from "./adapters/primary/react-components/dashboard/restaurant.component";
+import {Dashboard} from "./adapters/primary/react-components/dashboard/dashboard";
 
 function App() {
-  return (
-    <div className="App">
-      <Restaurant/>
-      <Cart />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Dashboard/>
+            <Cart/>
+        </div>
+    );
 }
 
 export default App;

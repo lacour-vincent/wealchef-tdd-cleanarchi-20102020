@@ -3,6 +3,7 @@ import {InMemoryRestaurantGateway} from "../../../adapters/secondary/gateways/in
 import {retrieveRestaurant} from "./retrieveRestaurant";
 import {configureStore, ReduxStore} from "../../../redux/configureStore";
 import {wealSushiRestaurant} from "../../../testfixtures/restaurantFixture";
+import {expectChangedStore} from "../../../testutils/testUtils";
 
 describe('Restaurant retrieval', () => {
 
@@ -18,26 +19,52 @@ describe('Restaurant retrieval', () => {
 
     describe('No restaurant available', () => {
 
-        it('should not retrieve any restaurant', () => {
-            expect(store.getState()).toEqual({
-                ...initialState,
-                restaurant: null
-            });
+        it('should not retrieve any restaurant', done => {
+            store.dispatch(retrieveRestaurant);
+            expectChangedStore(store)(done, () =>
+                expect(store.getState()).toEqual({
+                    ...initialState,
+                    restaurant: {
+                        data: null,
+                        fetching: false,
+                        fetched: true
+                    }
+                }));
         });
 
     });
 
     describe('One restaurant available', () => {
 
-        it('should retrieve the restaurant', () => {
+        beforeEach(() => {
             restaurantGateway.feedWith(wealSushiRestaurant);
+        });
+
+        it('should retrieve the restaurant', done => {
             store.dispatch(retrieveRestaurant);
-            store.subscribe(() => {
+            expectChangedStore(store)(done, () =>
                 expect(store.getState()).toEqual({
                     ...initialState,
-                    restaurant: {id: '456def', articles: [{id: '123abc'}]}
-                });
-            });
+                    restaurant: {
+                        data: wealSushiRestaurant,
+                        fetching: false,
+                        fetched: true
+                    }
+                }));
+        });
+
+        it('should track restaurant retrieval', done => {
+            expectChangedStore(store)(done, () =>
+                expect(store.getState()).toEqual({
+                    ...initialState,
+                    restaurant: {
+                        data: null,
+                        fetching: true,
+                        fetched: false
+                    },
+                })
+            );
+            store.dispatch(retrieveRestaurant);
         });
 
     });

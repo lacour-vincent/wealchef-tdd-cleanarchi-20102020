@@ -2,5 +2,9 @@ import {Restaurant} from "../corelogic/models/restaurant.interface";
 
 export interface AppState {
     cart: string[];
-    restaurant: Restaurant | null
+    restaurant: {
+        data: Restaurant | null,
+        fetching: boolean,
+        fetched: boolean;
+    }
 }
