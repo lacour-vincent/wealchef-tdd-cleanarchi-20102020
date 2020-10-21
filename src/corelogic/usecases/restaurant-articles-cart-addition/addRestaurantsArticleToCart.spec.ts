@@ -1,10 +1,10 @@
 import {AppState} from "../../../redux/appState.interface";
-import {Store} from "redux";
-import {configureStore} from "../../../redux/configureStore";
+import {ReduxStore,configureStore} from "../../../redux/configureStore";
+import {addRestaurantArticleToCart} from "./addRestaurantArticleToCart"
 
 describe('Add to cart some restaurants\' articles', () => {
 
-    let store: Store<AppState>;
+    let store: ReduxStore;
     let initialState: AppState;
 
     beforeEach(() => {
@@ -26,7 +26,7 @@ describe('Add to cart some restaurants\' articles', () => {
     describe('Some add articles in the cart', () => {
 
         it('should add one article in the cart', () => {
-            store.dispatch({type: 'ADD_ARTICLE_TO_CART', payload: {articleId: '123abc'}});
+            store.dispatch(addRestaurantArticleToCart("123abc"));
             expect(store.getState()).toEqual({
                 ...initialState,
                 cart: ['123abc']

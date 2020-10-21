@@ -1,13 +1,20 @@
 import {Card} from "react-bootstrap";
-import React, {FunctionComponent} from "react";
+import React, {FunctionComponent,useCallback} from "react";
 import {ArticleVM} from "./viewmodels/ArticleVM";
+import { useDispatch } from "react-redux";
+import { addRestaurantArticleToCart } from "../../../../corelogic/usecases/restaurant-articles-cart-addition/addRestaurantArticleToCart";
 
 interface Props {
     article: ArticleVM
 }
 
 export const ArticleCard: FunctionComponent<Props> = ({article}) => {
-    return <Card>
+    const dispatch = useDispatch()
+    const addToCart = useCallback(() => {
+        dispatch(addRestaurantArticleToCart(article.id))
+    },[dispatch,article.id])
+
+    return <Card onClick={addToCart}>
         <Card.Header>
             Nom d'article : {article.name}
         </Card.Header>

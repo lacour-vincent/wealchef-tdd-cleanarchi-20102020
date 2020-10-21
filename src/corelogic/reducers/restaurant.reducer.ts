@@ -15,7 +15,11 @@ const fetching = (state: boolean = false, action: actionCreators.Actions) => {
 }
 
 const fetched = (state: boolean = false, action: actionCreators.Actions) => {
-    return action.type === 'RESTAURANT_RETRIEVED';
+    if(action.type === 'RETRIEVE_RESTAURANT')
+       return false;
+    if(action.type === 'RESTAURANT_RETRIEVED')
+       return true;
+    return state;
 };
 
 export default combineReducers({
